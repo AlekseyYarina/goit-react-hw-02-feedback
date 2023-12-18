@@ -1,15 +1,3 @@
-.feedback {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 500px;
-  border: 1px solid black;
-  padding: 20px;
-}
-.feedbackTitle {
-  font-size: 28px;
-  font-weight: 600;
-}
 .feedbackBtns {
   display: flex;
   flex-direction: row;

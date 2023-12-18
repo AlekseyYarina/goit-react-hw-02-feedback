@@ -1,6 +1,7 @@
 import { Component } from 'react';
-import { Feedback } from './feedback/feedback';
+import { FeedbackOptions } from './feedback/feedback';
 import { Statistics } from './statistic/statistic';
+import { Section } from './section/section';
 
 export class App extends Component {
   state = {
@@ -12,15 +13,12 @@ export class App extends Component {
   handleClickGood = () => {
     this.setState({ good: this.state.good + 1 });
   };
-
   handleClickNeutral = () => {
     this.setState({ neutral: this.state.neutral + 1 });
   };
-
   handleClickBad = () => {
     this.setState({ bad: this.state.bad + 1 });
   };
-
   getTotal = () => {
     const values = Object.values(this.state);
     return values.reduce((acc, curr) => acc + curr, 0);
@@ -34,21 +32,27 @@ export class App extends Component {
     const positiveFeedbackPercentage = (good / totalFeedback) * 100;
     return parseFloat(positiveFeedbackPercentage.toFixed(0));
   };
+
   render() {
     return (
       <div>
-        <Feedback
-          handleClickGood={this.handleClickGood}
-          handleClickNeutral={this.handleClickNeutral}
-          handleClickBad={this.handleClickBad}
-        />
-        <Statistics
-          good={this.state.good}
-          neutral={this.state.neutral}
-          bad={this.state.bad}
-          total={this.getTotal()}
-          positiveFeedback={this.getPositiveFeedback()}
-        />
+        <Section title={'Please leave feedback'}>
+          <FeedbackOptions
+            handleClickGood={this.handleClickGood}
+            handleClickNeutral={this.handleClickNeutral}
+            handleClickBad={this.handleClickBad}
+          />
+        </Section>
+
+        <Section title={'Statistics'}>
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            total={this.getTotal()}
+            positivePercentage={this.getPositiveFeedback()}
+          />
+        </Section>
       </div>
     );
   }
