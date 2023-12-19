@@ -5,6 +5,7 @@ export const Notifacation = ({ message }) => {
     fontSize: '16px',
     fontWeight: '400',
     border: '1px solid black',
+    borderTop: 'none',
   };
   return <p style={notificationStyle}>{message}</p>;
 };
