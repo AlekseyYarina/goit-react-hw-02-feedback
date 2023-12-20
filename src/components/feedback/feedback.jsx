@@ -1,21 +1,16 @@
+import { FeedbackButton } from 'components/FeedbackButton/FeedbackButton';
 import css from './feedback.module.css';
 
-export const FeedbackOptions = ({
-  handleClickGood,
-  handleClickNeutral,
-  handleClickBad,
-}) => {
+export const FeedbackOptions = ({ onLeaveFeedback, options }) => {
   return (
     <div className={css.feedbackBtns}>
-      <button type="button" onClick={() => handleClickGood()}>
-        Good
-      </button>
-      <button type="button" onClick={() => handleClickNeutral()}>
-        Neutral
-      </button>
-      <button type="button" onClick={() => handleClickBad()}>
-        Bad
-      </button>
+      {options.map(option => (
+        <FeedbackButton
+          key={option}
+          option={option}
+          onLeaveFeedback={onLeaveFeedback}
+        />
+      ))}
     </div>
   );
 };
